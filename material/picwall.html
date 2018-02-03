@@ -1,5 +1,5 @@
-<!DOCTYPE html class="dark">
-<html>
+<!DOCTYPE html>
+<html class="is-full-height">
 <head>
     {include="includes"}
 </head>
@@ -10,10 +10,13 @@
         {$value}
     {/loop}
 </div>
-<div id="picwall_container text-center" class="clearfix">
+<div class="picwall-container text-center">
     {loop="$linksToDisplay"}
     <div class="picwall-pictureframe ripple">
-	    {$value.thumbnail}<a class="picwall-link" href="{$value.real_url}"><span class="info">{$value.title}</span></a>
+	    {$value.thumbnail}
+        <a class="picwall-link" href="{$value.real_url}">
+            <span class="info">{$value.title}</span>
+        </a>
 
         {loop="$value.picwall_plugin"}
             {$value}

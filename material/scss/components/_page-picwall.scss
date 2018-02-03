@@ -1,0 +1,70 @@
+/* Picture wall */
+.picwall-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.picwall-pictureframe {
+    min-width: 120px;
+
+    img {
+        display: block;
+        width: 120px;
+        object-fit: cover;
+    }
+}
+
+.picwall-link{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #666;
+    background-color: rgba(100, 100, 100, .7);
+    color: #fff;
+    @include font-caption();
+}
+
+.picwall-pictureframe:hover .picwall-link{
+    display: block;
+    text-decoration: none;
+}
+
+.picwall-link:hover{
+    color: #fff;
+}
+
+
+
+
+/* .picwall-pictureframe{
+    float: left;
+    position: relative;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+
+    img {
+        display: block;
+        width: 120px;
+        object-fit: cover;
+    }
+}
+.picwall-link{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #666;
+    background-color: rgba(100, 100, 100, .7);
+    color: #fff;
+    @include font-caption();
+}
+.picwall-pictureframe:hover .picwall-link{
+    display: block;
+    text-decoration: none;
+}
+.picwall-link:hover{
+    color: #fff;
+} */

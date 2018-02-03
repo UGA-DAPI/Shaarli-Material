@@ -489,6 +489,10 @@
 
     var initBlazy = function(){
         var bLazy = new Blazy();
+
+        // $('img.b-lazy').on('error', function(){
+        //     $(this).addClass('hidden');
+        // })
     };
 
     var initFirefoxSocial = function(){
