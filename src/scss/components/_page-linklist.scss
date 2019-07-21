@@ -1,4 +1,15 @@
 /* Link list */
+.links-list[data-columns]:before{
+    content: '4 .column.size-1of4';
+
+    @media screen and (max-width: 1200px) {
+        content: '2 .column.size-1of2'
+    }
+
+    @media screen and (max-width: 768px) {
+        content: '1 .column.size-1of1'
+    }
+}
 .link-outer{
     @extend .card;
     position: relative;
@@ -94,6 +105,7 @@ a.link-url{
     @include font-sub();
     color: $color-gray-600;
     float: right;
+    margin-right: 1em;
 
     a,
     .link-archive {
@@ -122,7 +134,9 @@ a.link-url{
     }
 }
 .thumb img{
-    margin: 15px;
+    //margin: 15px;
+    width: 100%;
+    height: auto;
 }
 .link-tag-list{
     overflow: hidden;

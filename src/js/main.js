@@ -367,12 +367,19 @@
         $('.icon-qrcode, .qrcode').removeAttr('onclick').on('click', function(event){
             event.preventDefault();
 
-            var url = $(this).attr('href');
-
+            //var url = $(this).attr('href');
+            //var image = qr.image({size: 10,value: $(this).data('permalink')});
             overlay.addListener('qrcode', function(event){
                 overlay.hide();
             });
-            overlay.addContent('qrcode', '<img src="' + url + '" alt="QR Code" />');
+            overlay.addContent('qrcode', '<br/>');
+            var qrcode = new QRCode(document.getElementById("overlay-content-qrcode"), {
+    text: $(this).data('permalink'),
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    useSVG: true,
+    correctLevel : QRCode.CorrectLevel.L
+});
             overlay.show();
 
             // Disable original click event.

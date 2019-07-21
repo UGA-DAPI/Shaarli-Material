@@ -11,7 +11,7 @@
     </div>
 
     <div class="daily-header">
-        <h1>{'The Daily Shaarli'|t}</h1>
+        <h1>{'Daily'|t} {$shaarlititle}</h1>
         <p class="daily-header-subtitle">{'All links of one day in a single page.'|t}</p>
         <div class="container">
             <div class="row">
@@ -40,18 +40,18 @@
     </div>
 
     {if="$linksToDisplay"}
-        <div class="daily-grid clearfix" data-columns>
+        <div class="daily-grid container clearfix" data-columns>
         {loop="$linksToDisplay"}
         {$link=$value}
             <div class="daily-item">
                 <div class="daily-card">
+                    {if="$thumbnails_enabled && !empty($link.thumbnail)"}
+                        <div class="daily-item-image" style="background-image: url({$link.thumbnail})"></div>
+                    {/if}
                     <a href="{$link.real_url}" class="daily-item-header ripple ripple-primary">
                         {$link.title}
                     </a>
 
-                    {if="$thumbnails_enabled && !empty($link.thumbnail)"}
-                        <div class="daily-item-image" style="background-image: url({$link.thumbnail})"></div>
-                    {/if}
 
                     {if="$link.formatedDescription"}
                     <div class="daily-item-body">
@@ -64,12 +64,17 @@
                             {function="strftime('%H:%M', $link.timestamp)"}
                         </a>
                         {/if}
-                        {if="$link.tags"}
-                        <div class="daily-item-tags">
-                            {$tags=implode(', ', $link['taglist'])}
-                            {$tags}
+                        <div class="link-footer is-flex">
+                            <div class="link-tag-list is-flex-grown">
+                            {if="$link.tags"}
+                                {loop="$link.taglist"}
+                                    {if="$value"}
+                                    <span class="link-tag" title="Find links with the same tag"><a href="?addtag={$value|urlencode}">{$value}</a></span>
+                            {/if}
+                                {/loop}
+                            {/if}
+                            </div>
                         </div>
-                        {/if}
                         <div>
                         {loop="$link.link_plugin"}
                             {$value}

@@ -50,10 +50,34 @@
     float: left;
     position: relative;
     overflow: hidden;
-    width: 120px;
-    height: 90px;
+    //width: 120px;
+    //height: 90px;
     text-align: center;
+    img{
+        width: 100%;
+        height: auto;
+    }
 }
+#picwall_container[data-columns]:before{
+    content: '6 .column_nogutter.size-1of6';
+
+    @media screen and (max-width: 1200px) {
+        content: '4 .column_nogutter.size-1of4'
+    }
+
+    @media screen and (max-width: 768px) {
+        content: '2 .column_nogutter.size-1of2'
+    }
+}
+.column_nogutter {
+    float: left;
+    padding: 0;
+}
+
+.size-1of6 { 
+    width: 16.66666%;
+}
+
 .picwall-link{
     display: none;
     position: absolute;
@@ -111,9 +135,13 @@
     left: 0;
     width: 100%;
     text-align: center;
+    svg{
+        width: 25vw;
+        border: white solid 0.5em;
+    }
 }
 
-@media (min-width: 768px){
+/*@media (min-width: 768px){
     .thumb{
         float: left;
     }
@@ -121,7 +149,7 @@
     .thumb + .link-description{
         padding-left: 150px;
     }
-}
+}*/
 
 /* Plugin administration */
 .plugin-param:focus-within {

@@ -7,7 +7,8 @@
 {$dateFormat=!empty($conf->get('config.MATERIAL_PHP_DATE_PATTERN')) ? $conf->get('config.MATERIAL_PHP_DATE_PATTERN') : '%c'}
 {$qrCodeDisabled=!empty($conf->get('config.MATERIAL_NO_QRCODE')) ? $conf->get('config.MATERIAL_NO_QRCODE') : false}
 
-<div id="linklist" class="container">
+<div id="linklist">
+    <div class="container">
     {loop="$plugin_start_zone"}
          {$value}
     {/loop}
@@ -45,7 +46,8 @@
         </div>
     {/if}
 
-    <div class="links-list">
+    </div>
+    <div class="links-list clearfix" data-columns>
 
         {ignore}Set translation here, for performances{/ignore}
         {$strPrivate=t('Private')}
@@ -65,31 +67,14 @@
                 <div class="link-overlay"></div>
                 <div class="link-inner">
                     <div class="link-header">
-                        <div class="row">
-                            <div class="col-sm-8">
+
                                 <a class="link-title" href="{$value.real_url}">
                                     {if="strpos($value.url, $value.shorturl) !== false"}
                                     <i class="mdi mdi-note"></i>
                                     {/if}
                                     {$value.title}
                                 </a>
-                                <a href="{$value.real_url}" class="link-url"><span title="Real URL">{$value.real_url}</span></a>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="link-date">
-                                    {if="!$hide_timestamps || $is_logged_in"}
-                                        <span title="Permalink - {function="strftime($dateFormat, $value.timestamp)"}"><a href="?{$value.shorturl}" class="link-actual-date">{function="strftime($dateFormat, $value.timestamp)"}</a></span>
-                                    {else}
-                                        <span title="Short link here"><a href="?{$value.shorturl}">Permalink</a></span>
-                                    {/if}
-                                    {loop="$value.link_plugin"}
-                                        <span class="link-plugin">{$value}</span>
-                                    {/loop}
-                                    {ignore}
-                                    {/ignore}
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="link-content">
                         <div>
@@ -103,6 +88,18 @@
                                   </a>
                             </div>
                             {/if}
+                                <div class="link-date">
+                                    {if="!$hide_timestamps || $is_logged_in"}
+                                        <span title="Permalink - {function="strftime($dateFormat, $value.timestamp)"}"><a href="?{$value.shorturl}" class="link-actual-date">{function="strftime($dateFormat, $value.timestamp)"}</a></span>
+                                    {else}
+                                        <span title="Short link here"><a href="?{$value.shorturl}">Permalink</a></span>
+                                    {/if}
+                                    {loop="$value.link_plugin"}
+                                        <span class="link-plugin">{$value}</span>
+                                    {/loop}
+                                    {ignore}
+                                    {/ignore}
+                                </div>
                             {if="$value.description"}
                                 <div class="link-description">{$value.description}</div>
                             {/if}
@@ -119,7 +116,7 @@
                         
                         <div class="link-actions is-flex-end">
                             {if="!$qrCodeDisabled"}
-                                <a href="http://qrfree.kaywa.com/?l=1&amp;s=8&amp;d={$value.real_url|urlencode}" data-permalink="{$value.real_url|urlencode}" title="Show link QR Code" class="qrcode"><i class="mdi mdi-qrcode"></i></a>
+                                <a href="#" data-permalink="{$value.real_url}" title="Show link QR Code" class="qrcode"><i class="mdi mdi-qrcode"></i></a>
                             {/if}
                             {if="$is_logged_in"}
                                 <a href="?delete_link&amp;lf_linkdate={$value.id}&amp;token={$token}" title="{$strDelete}" class="button-delete"><i class="mdi mdi-delete"></i></a>
@@ -137,11 +134,13 @@
         {/loop}
     </div>
 
+    <div class="container">
     {include="linklist.paging"}
     
     {loop="$plugin_end_zone"}
         {$value}
     {/loop}
+</div>
 </div>
 
 {if="!empty($linkcount)"}
